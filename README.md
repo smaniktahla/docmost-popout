@@ -7,6 +7,8 @@ A small Firefox extension that creates a new note in your self-hosted [Docmost](
 2. Optionally set a default title (`{date}` is replaced with today's date) and the pop-out window size.
 3. Click the toolbar button (or press `Alt+Shift+N`), type a title, and pick a space. The note is created and opens in a pop-out window.
 
+To change settings later, click the toolbar button and choose **⚙ Settings** (or use `about:addons` → the extension → Preferences).
+
 You must be signed in to Docmost in the same Firefox profile; the extension uses your existing session.
 
 ## Privacy

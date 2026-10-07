@@ -1,5 +1,10 @@
 const msg = (t) => (document.getElementById("msg").textContent = t);
 
+document.getElementById("settings").onclick = async () => {
+  await browser.runtime.openOptionsPage();
+  window.close();
+};
+
 (async () => {
   const state = await browser.runtime.sendMessage({ type: "getState" });
   if (!state.configured) {
