@@ -1,0 +1,22 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Quick Note for Docmost settings</title>
+<style>
+  body { font: 14px system-ui, sans-serif; max-width: 480px; margin: 2em auto; }
+  label { display: block; margin-top: 1em; font-weight: 600; }
+  input { width: 100%; padding: 6px; box-sizing: border-box; }
+  .row { display: flex; gap: 8px; } .row > * { flex: 1; }
+  button { margin-top: 1em; padding: 6px 14px; }
+  #status { margin-top: 1em; color: #555; }
+</style>
+<h2>Quick Note for Docmost</h2>
+<label>Docmost URL <input id="baseUrl" placeholder="https://docmost.example.com"></label>
+<label>Default title, pre-filled in the new-note popup (optional; {date} is replaced) <input id="title"></label>
+<div class="row">
+  <label>Window width <input id="width" type="number" min="300"></label>
+  <label>Window height <input id="height" type="number" min="300"></label>
+</div>
+<button id="save">Save</button>
+<div id="status">Sign in to Docmost in this Firefox profile first. Click the toolbar button to pick a space for each new note. Shortcut: Alt+Shift+N (change at about:addons → gear → Manage Extension Shortcuts).</div>
+<p style="font-size:12px;color:#777">Settings sync via Firefox Sync if enabled. On a new device, re-save once to grant access to your Docmost address.</p>
+<script src="options.js"></script>
