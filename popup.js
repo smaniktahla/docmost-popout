@@ -14,7 +14,9 @@ document.getElementById("settings").onclick = async () => {
   const title = document.getElementById("title");
   title.value = state.title || "";
   title.focus();
-  const origin = new URL(state.baseUrl).origin + "/*";
+  // Firefox match patterns don't support ports, so ask for scheme + host only.
+  const u = new URL(state.baseUrl);
+  const origin = `${u.protocol}//${u.hostname}/*`;
   if (!(await browser.permissions.contains({ origins: [origin] }))) {
     msg("");
     const g = document.createElement("button");

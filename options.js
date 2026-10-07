@@ -11,12 +11,12 @@ const status = (t) => ($("status").textContent = t);
 
 $("save").onclick = async () => {
   const baseUrl = $("baseUrl").value.trim();
-  let origin;
-  try { origin = new URL(baseUrl).origin; } catch { origin = ""; }
-  if (!/^https?:\/\//.test(baseUrl) || !origin) return status("Enter the full Docmost URL, including http:// or https://");
+  let pattern;
+  try { const u = new URL(baseUrl); pattern = `${u.protocol}//${u.hostname}/*`; } catch { pattern = ""; }
+  if (!/^https?:\/\//.test(baseUrl) || !pattern) return status("Enter the full Docmost URL, including http:// or https://");
   // Must be the first await so it counts as a user gesture. Grants access to this one origin only.
-  const granted = await browser.permissions.request({ origins: [origin + "/*"] });
-  if (!granted) return status("Permission to access " + origin + " was denied; the extension can't work without it.");
+  const granted = await browser.permissions.request({ origins: [pattern] });
+  if (!granted) return status("Permission to access " + pattern + " was denied; the extension can't work without it.");
   await browser.storage.sync.set({
     configured: true,
     baseUrl,
