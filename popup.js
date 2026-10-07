@@ -1,14 +1,15 @@
 const msg = (t) => (document.getElementById("msg").textContent = t);
 
-document.getElementById("settings").onclick = async () => {
-  await browser.runtime.openOptionsPage();
+document.getElementById("settings").onclick = () => {
+  // Background opens the page so it still happens after this popup is destroyed.
+  browser.runtime.sendMessage({ type: "openOptions" });
   window.close();
 };
 
 (async () => {
   const state = await browser.runtime.sendMessage({ type: "getState" });
   if (!state.configured) {
-    await browser.runtime.openOptionsPage();
+    browser.runtime.sendMessage({ type: "openOptions" });
     return window.close();
   }
   const title = document.getElementById("title");

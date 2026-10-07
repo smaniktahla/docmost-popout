@@ -41,6 +41,8 @@ browser.runtime.onInstalled.addListener(({ reason }) => {
 browser.runtime.onMessage.addListener(async (msg) => {
   const cfg = await getConfig();
   switch (msg?.type) {
+    case "openOptions":
+      return browser.runtime.openOptionsPage();
     case "getState":
       return { configured: cfg.configured, baseUrl: cfg.baseUrl, title: cfg.title };
     case "listSpaces":
